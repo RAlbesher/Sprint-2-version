@@ -20,7 +20,7 @@ class LoginAndSignupBtn extends StatelessWidget {
               child: DecoratedBox(
                 decoration: BoxDecoration(
                     gradient: LinearGradient(colors: [
-                      const Color(0xff57d77a),
+                      const Color(0xff42c98d),
                       const Color(0xff42c98d),
                       const Color(0xff0da6c2),
 

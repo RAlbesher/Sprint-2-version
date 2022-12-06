@@ -49,10 +49,10 @@ class CreateStudent extends StatefulWidget {
 class _CreateStudentState extends State<CreateStudent>
     with TickerProviderStateMixin {
   int _changedNumber = 0, _selectedNumber = 1;
-  late String Numvalue = "1";
-  final ClassNum = ["1", "2", "3", "4", "5", "6"];
-  final Blood = ["O+", "A+", "B+", "AB+", "O-", "A-", "B-", "AB-"];
-  late var blood = "O+";
+  late String Numvalue = "-";
+  final ClassNum = ["-", "1", "2", "3", "4", "5", "6"];
+  final Blood = ["-", "O+", "A+", "B+", "AB+", "O-", "A-", "B-", "AB-"];
+  late var blood = "-";
   Student Studentx = new Student(
     Name: "",
     Class: "",
@@ -203,18 +203,787 @@ class _CreateStudentState extends State<CreateStudent>
                     Container(
                       padding: EdgeInsets.symmetric(horizontal: 35),
                       child: Form(
-                        key: formKey,
-                        child: GetWidget(widget.index),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 50,
+                          key: formKey,
+                          child: Column(
+                            children: [
+                              Column(
+                                children: [
+                                  Directionality(
+                                    textDirection: TextDirection.rtl,
+                                    child: TextFormField(
+                                      controller: studentName,
+                                      //  controller: parentUserName..text = parentx.PUserName,
+                                      //to take text from user input
+                                      textAlign: TextAlign.right,
+
+                                      style: GoogleFonts.poppins(
+                                          fontSize: 14,
+                                          //fontWeight: FontWeight.w600,
+                                          color: Colors.grey),
+                                      showCursor: true,
+                                      cursorColor: const Color(0xff57d77a),
+
+                                      decoration: InputDecoration(
+                                        labelText: "أدخل أسم الطالب",
+                                        hintText: " اسم الطالب ",
+                                        hintStyle: const TextStyle(
+                                            color: Colors.grey, fontSize: 12),
+                                        labelStyle: const TextStyle(
+                                            color: const Color(0xff57d77a),
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w300),
+                                        prefixIcon: Padding(
+                                          padding: const EdgeInsets.only(
+                                              right: 12, top: 9, left: 9),
+                                          child: Container(
+                                            //  padding: const EdgeInsets.only(right: 5),
+
+                                            child: Column(children: [
+                                              Image.asset(
+                                                  "assets/icons/name.png",
+                                                  width: 20,
+                                                  height: 20,
+                                                  color: Color(0xff42c98d)),
+                                            ]),
+                                          ),
+                                        ),
+                                        enabledBorder: UnderlineInputBorder(
+                                            borderSide: BorderSide(
+                                                color: const Color(0xff57d77a),
+                                                width: 1),
+                                            borderRadius:
+                                                BorderRadius.circular(10)),
+                                        floatingLabelStyle: const TextStyle(
+                                            color: const Color(0xff57d77a),
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w300),
+                                        focusedBorder: UnderlineInputBorder(
+                                          borderSide: BorderSide(
+                                              color: const Color(0xff57d77a),
+                                              width: 2),
+                                          borderRadius:
+                                              BorderRadius.circular(15),
+                                        ),
+                                      ),
+                                      validator: (value) {
+                                        if (value!.isEmpty)
+                                          return "أرجو منك تعبئه الحقل الفارغ ";
+                                        else {
+                                          return null;
+                                        }
+                                      },
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 20,
+                                  ),
+                                  Directionality(
+                                    textDirection: TextDirection.rtl,
+                                    child: TextFormField(
+                                      controller: Studentusername,
+                                      //  controller: parentUserName..text = parentx.PUserName,
+                                      //to take text from user input
+                                      textAlign: TextAlign.right,
+
+                                      style: GoogleFonts.poppins(
+                                          fontSize: 14,
+                                          //fontWeight: FontWeight.w600,
+                                          color: Colors.grey),
+                                      showCursor: true,
+                                      cursorColor: const Color(0xff57d77a),
+
+                                      decoration: InputDecoration(
+                                        hintText: " أدخل اسم المستخدم",
+                                        labelText: "اسم المستخدم",
+                                        hintStyle: const TextStyle(
+                                            color: Colors.grey, fontSize: 12),
+                                        labelStyle: const TextStyle(
+                                            color: const Color(0xff57d77a),
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w300),
+                                        prefixIcon: Padding(
+                                          padding:
+                                              const EdgeInsets.only(right: 5),
+                                          child: Icon(
+                                            Icons.person,
+                                            size: 22,
+                                            color: const Color(0xff42c98d),
+                                          ),
+                                        ),
+                                        enabledBorder: UnderlineInputBorder(
+                                            borderSide: BorderSide(
+                                                color: const Color(0xff57d77a),
+                                                width: 1),
+                                            borderRadius:
+                                                BorderRadius.circular(10)),
+                                        floatingLabelStyle: const TextStyle(
+                                            color: const Color(0xff57d77a),
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w300),
+                                        focusedBorder: UnderlineInputBorder(
+                                          borderSide: BorderSide(
+                                              color: const Color(0xff57d77a),
+                                              width: 2),
+                                          borderRadius:
+                                              BorderRadius.circular(15),
+                                        ),
+                                      ),
+                                      validator: (value) {
+                                        if (value!.isEmpty)
+                                          return "أرجو منك تعبئه الحقل الفارغ ";
+                                        else {
+                                          for (var i = 0;
+                                              i < docUserName.length;
+                                              i++) {
+                                            if (value == docUserName[i]) {
+                                              return "اسم المستخدم مستخدم مسبقا ";
+                                            }
+                                          }
+                                          return null;
+                                        }
+                                      },
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 20,
+                                  ),
+                                  Directionality(
+                                    textDirection: TextDirection.rtl,
+                                    child: TextFormField(
+                                      controller: StudentNationality,
+                                      //  controller: parentUserName..text = parentx.PUserName,
+                                      //to take text from user input
+                                      textAlign: TextAlign.right,
+
+                                      style: GoogleFonts.poppins(
+                                          fontSize: 14,
+                                          //fontWeight: FontWeight.w600,
+                                          color: Colors.grey),
+                                      showCursor: true,
+                                      cursorColor: const Color(0xff57d77a),
+
+                                      decoration: InputDecoration(
+                                        hintText: "ماهي جنسيتك؟",
+                                        labelText: "الجنسية",
+                                        hintStyle: const TextStyle(
+                                            color: Colors.grey, fontSize: 12),
+                                        labelStyle: const TextStyle(
+                                            color: const Color(0xff57d77a),
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w300),
+                                        prefixIcon: Padding(
+                                          padding: const EdgeInsets.only(
+                                              right: 12, top: 9, left: 9),
+                                          child: Container(
+                                            //  padding: const EdgeInsets.only(right: 5),
+
+                                            child: Column(children: [
+                                              Image.asset(
+                                                  "assets/icons/Nationality.png",
+                                                  width: 20,
+                                                  height: 20,
+                                                  color: Color(0xff42c98d)),
+                                            ]),
+                                          ),
+                                        ),
+                                        enabledBorder: UnderlineInputBorder(
+                                            borderSide: BorderSide(
+                                                color: const Color(0xff57d77a),
+                                                width: 1),
+                                            borderRadius:
+                                                BorderRadius.circular(10)),
+                                        floatingLabelStyle: const TextStyle(
+                                            color: const Color(0xff57d77a),
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w300),
+                                        focusedBorder: UnderlineInputBorder(
+                                          borderSide: BorderSide(
+                                              color: const Color(0xff57d77a),
+                                              width: 2),
+                                          borderRadius:
+                                              BorderRadius.circular(15),
+                                        ),
+                                      ),
+                                      validator: (value) {
+                                        if (value!.isEmpty)
+                                          return "أرجو منك تعبئه الحقل الفارغ ";
+                                        else {
+                                          return null;
+                                        }
+                                      },
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 20,
+                                  ),
+                                ],
+                              ),
+                              Column(
+                                children: [
+                                  const SizedBox(
+                                    height: 20,
+                                  ),
+                                  Directionality(
+                                    textDirection: TextDirection.rtl,
+                                    child: TextFormField(
+                                      controller: StudentNationalID,
+                                      //  controller: parentUserName..text = parentx.PUserName,
+                                      //to take text from user input
+                                      textAlign: TextAlign.right,
+
+                                      style: GoogleFonts.poppins(
+                                          fontSize: 14,
+                                          //fontWeight: FontWeight.w600,
+                                          color: Colors.grey),
+                                      showCursor: true,
+                                      cursorColor: const Color(0xff57d77a),
+                                      maxLength: 10,
+                                      decoration: InputDecoration(
+                                        labelText: "رقم الهوية /الإقامة",
+                                        hintText: "أدخل رقم الهوية /الإقامة",
+                                        hintStyle: const TextStyle(
+                                            color: Colors.grey, fontSize: 12),
+                                        labelStyle: const TextStyle(
+                                            color: const Color(0xff57d77a),
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w300),
+                                        prefixIcon: Padding(
+                                          padding: const EdgeInsets.only(
+                                              right: 12, top: 9, left: 9),
+                                          child: Container(
+                                            //  padding: const EdgeInsets.only(right: 5),
+
+                                            child: Column(children: [
+                                              Image.asset("assets/icons/ID.png",
+                                                  width: 20,
+                                                  height: 20,
+                                                  color: Color(0xff42c98d)),
+                                            ]),
+                                          ),
+                                        ),
+                                        enabledBorder: UnderlineInputBorder(
+                                            borderSide: BorderSide(
+                                                color: const Color(0xff57d77a),
+                                                width: 1),
+                                            borderRadius:
+                                                BorderRadius.circular(10)),
+                                        floatingLabelStyle: const TextStyle(
+                                            color: const Color(0xff57d77a),
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w300),
+                                        focusedBorder: UnderlineInputBorder(
+                                          borderSide: BorderSide(
+                                              color: const Color(0xff57d77a),
+                                              width: 2),
+                                          borderRadius:
+                                              BorderRadius.circular(15),
+                                        ),
+                                      ),
+                                      validator: (value) {
+                                        if (value!.isEmpty ||
+                                            !RegExp(r'^[0-9]{10}$')
+                                                .hasMatch(value!))
+                                          return "أرجو منك تعبئه الحقل بطريقه صحيحه حيث يتكون من 10 ارقام";
+                                        else {
+                                          return null;
+                                        }
+                                      },
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                                  Center(
+                                    child: new Wrap(
+                                        spacing: 5.0,
+                                        runSpacing: 5.0,
+                                        direction: Axis
+                                            .vertical, // main axis (rows or columns)
+                                        children: <Widget>[
+                                          CupertinoButton(
+                                            child: Expanded(
+                                              child: Container(
+                                                width: 307,
+                                                margin:
+                                                    EdgeInsets.only(right: 20),
+                                                // padding:
+                                                //width: 300,
+                                                // padding: EdgeInsets.only(right: 4),
+                                                //   EdgeInsets.symmetric(horizontal: 120),
+                                                decoration: BoxDecoration(
+                                                  border: Border(
+                                                    bottom: BorderSide(
+                                                        width: 1.0,
+                                                        color: const Color(
+                                                            0xff57d77a)),
+                                                  ),
+                                                ),
+                                                alignment: Alignment.center,
+                                                child: Flexible(
+                                                  child: Row(
+                                                    children: <Widget>[
+                                                      Container(
+                                                        child: Row(
+                                                          children: <Widget>[
+                                                            Container(
+                                                              alignment:
+                                                                  Alignment
+                                                                      .center,
+                                                              // padding: EdgeInsets.only(right: 4),
+                                                              child: Positioned(
+                                                                left: 0,
+                                                                child: Icon(
+                                                                  Icons
+                                                                      .arrow_circle_down_rounded,
+                                                                  // Icons.arrow_downward_outlined,
+                                                                  color: const Color(
+                                                                      0xff57d77a),
+                                                                  size: 16,
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            Align(
+                                                              alignment: Alignment
+                                                                  .centerLeft,
+                                                              child: Container(
+                                                                width: 22,
+                                                                alignment:
+                                                                    Alignment
+                                                                        .center,
+                                                                //  padding: EdgeInsets.only(right: 120),
+                                                                child: Text(
+                                                                  style: GoogleFonts.poppins(
+                                                                      fontSize:
+                                                                          14,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w600,
+                                                                      color: const Color(
+                                                                          0xff57d77a)),
+                                                                  Numvalue,
+                                                                  maxLines: 2,
+                                                                  // textAlign: TextAlign.left,
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            SizedBox(
+                                                              width: 150,
+                                                            ),
+                                                            Row(children: [
+                                                              Text(
+                                                                style: GoogleFonts.poppins(
+                                                                    fontSize:
+                                                                        17,
+                                                                    color: const Color(
+                                                                        0xff57d77a)),
+                                                                'صف الطالب',
+                                                                maxLines: 2,
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .right,
+                                                              ),
+                                                              SizedBox(
+                                                                width: 10,
+                                                              ),
+                                                              Image.asset(
+                                                                  "assets/icons/Class.png",
+                                                                  width: 15,
+                                                                  height: 15,
+                                                                  color: Color(
+                                                                      0xff42c98d)),
+                                                            ]),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                            onPressed: () {
+                                              showModalBottomSheet(
+                                                  context: context,
+                                                  builder:
+                                                      (BuildContext context) {
+                                                    return Container(
+                                                      height: 200.0,
+                                                      color: Colors.white,
+                                                      child: Row(
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: <Widget>[
+                                                          CupertinoButton(
+                                                            child: Text(
+                                                              "إلغاء",
+                                                              style: GoogleFonts
+                                                                  .poppins(
+                                                                fontSize: 17,
+                                                                color: Color(
+                                                                    0xffA7A7A7),
+                                                              ),
+                                                            ),
+                                                            onPressed: () {
+                                                              Navigator.pop(
+                                                                  context);
+                                                            },
+                                                          ),
+                                                          Expanded(
+                                                            child:
+                                                                CupertinoPicker(
+                                                              scrollController:
+                                                                  scrollController,
+                                                              looping: false,
+                                                              itemExtent: 64,
+                                                              backgroundColor:
+                                                                  Colors.white,
+                                                              onSelectedItemChanged:
+                                                                  (index) {
+                                                                print(index);
+
+                                                                widget.index =
+                                                                    index;
+                                                                print(widget
+                                                                    .index);
+                                                                final item =
+                                                                    ClassNum[widget
+                                                                        .index];
+                                                                widget.index =
+                                                                    index;
+                                                                controller
+                                                                        .text =
+                                                                    item;
+                                                                Numvalue = item;
+                                                              },
+                                                              children: ClassNum
+                                                                  .map((item) =>
+                                                                      Center(
+                                                                          child:
+                                                                              Text(
+                                                                        item,
+                                                                        style: TextStyle(
+                                                                            fontSize:
+                                                                                20),
+                                                                      ))).toList(),
+                                                            ),
+                                                          ),
+                                                          CupertinoButton(
+                                                            child: Text("موافق",
+                                                                style: GoogleFonts.poppins(
+                                                                    fontSize:
+                                                                        17,
+                                                                    color: const Color(
+                                                                        0xff57d77a))),
+                                                            onPressed: () {
+                                                              scrollController =
+                                                                  FixedExtentScrollController(
+                                                                      initialItem:
+                                                                          _changedNumber);
+                                                              //scrollController.dispose();
+                                                              setState(() {
+                                                                _selectedNumber =
+                                                                    _changedNumber;
+                                                              });
+                                                              Navigator.pop(
+                                                                  context);
+                                                              /*  parentx.UpdateParent(
+                                              widget.documentId,
+                                              "RelativeRelation",
+                                              value);*/
+                                                            },
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    );
+                                                  });
+                                            },
+                                          ),
+                                        ]),
+                                  ),
+                                  Center(
+                                    child: new Wrap(
+                                        spacing: 5.0,
+                                        runSpacing: 5.0,
+                                        direction: Axis
+                                            .vertical, // main axis (rows or columns)
+                                        children: <Widget>[
+                                          CupertinoButton(
+                                            child: Expanded(
+                                              child: Container(
+                                                width: 307,
+                                                decoration: BoxDecoration(
+                                                  border: Border(
+                                                    bottom: BorderSide(
+                                                        width: 1.0,
+                                                        color: const Color(
+                                                            0xff57d77a)),
+                                                  ),
+                                                ),
+                                                alignment: Alignment.center,
+                                                child: Flexible(
+                                                  child: Row(
+                                                    children: <Widget>[
+                                                      Container(
+                                                        child: Row(
+                                                          children: <Widget>[
+                                                            Container(
+                                                              alignment:
+                                                                  Alignment
+                                                                      .center,
+                                                              padding: EdgeInsets
+                                                                  .only(
+                                                                      right: 4),
+                                                              child: Positioned(
+                                                                left: 0,
+                                                                child: Icon(
+                                                                  Icons
+                                                                      .arrow_circle_down_rounded,
+                                                                  // Icons.arrow_downward_outlined,
+                                                                  color: const Color(
+                                                                      0xff57d77a),
+                                                                  size: 16,
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            Align(
+                                                              alignment: Alignment
+                                                                  .centerLeft,
+                                                              child: Container(
+                                                                alignment:
+                                                                    Alignment
+                                                                        .center,
+                                                                padding: EdgeInsets
+                                                                    .only(
+                                                                        right:
+                                                                            120),
+                                                                child: Text(
+                                                                  style: GoogleFonts.poppins(
+                                                                      fontSize:
+                                                                          14,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w600,
+                                                                      color: const Color(
+                                                                          0xff57d77a)),
+                                                                  blood,
+                                                                  maxLines: 2,
+                                                                  // textAlign: TextAlign.left,
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            SizedBox(
+                                                              width: 30,
+                                                            ),
+                                                            Row(children: [
+                                                              Text(
+                                                                style: GoogleFonts.poppins(
+                                                                    fontSize:
+                                                                        14,
+                                                                    color: const Color(
+                                                                        0xff57d77a)),
+                                                                'فصيلة الدم ',
+                                                                maxLines: 2,
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .right,
+                                                              ),
+                                                              SizedBox(
+                                                                width: 10,
+                                                              ),
+                                                              Image.asset(
+                                                                  "assets/icons/Blood.png",
+                                                                  width: 15,
+                                                                  height: 15,
+                                                                  color: Color(
+                                                                      0xff42c98d)),
+                                                            ]),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                            onPressed: () {
+                                              showModalBottomSheet(
+                                                  context: context,
+                                                  builder:
+                                                      (BuildContext context) {
+                                                    return Container(
+                                                      height: 200.0,
+                                                      color: Colors.white,
+                                                      child: Row(
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: <Widget>[
+                                                          CupertinoButton(
+                                                            child: Text("لغاء",
+                                                                style: TextStyle(
+                                                                    color: Color(
+                                                                        0xffA7A7A7),
+                                                                    fontSize:
+                                                                        16)),
+                                                            onPressed: () {
+                                                              Navigator.pop(
+                                                                  context);
+                                                            },
+                                                          ),
+                                                          Expanded(
+                                                            child:
+                                                                CupertinoPicker(
+                                                              scrollController:
+                                                                  scrollController,
+                                                              looping: false,
+                                                              itemExtent: 64,
+                                                              backgroundColor:
+                                                                  Colors.white,
+                                                              onSelectedItemChanged:
+                                                                  (index) {
+                                                                print(index);
+
+                                                                widget.index =
+                                                                    index;
+
+                                                                final item =
+                                                                    Blood[widget
+                                                                        .index];
+                                                                widget.index =
+                                                                    index;
+                                                                controller
+                                                                        .text =
+                                                                    item;
+                                                                blood = item;
+                                                              },
+                                                              children: Blood
+                                                                  .map((item) =>
+                                                                      Center(
+                                                                          child:
+                                                                              Text(
+                                                                        item,
+                                                                        style: TextStyle(
+                                                                            fontSize:
+                                                                                20),
+                                                                      ))).toList(),
+                                                            ),
+                                                          ),
+                                                          CupertinoButton(
+                                                            child: Text("موافق",
+                                                                style: GoogleFonts.poppins(
+                                                                    fontSize:
+                                                                        17,
+                                                                    color: const Color(
+                                                                        0xff57d77a))),
+                                                            onPressed: () {
+                                                              scrollController =
+                                                                  FixedExtentScrollController(
+                                                                      initialItem:
+                                                                          _changedNumber);
+                                                              //scrollController.dispose();
+                                                              setState(() {
+                                                                _selectedNumber =
+                                                                    _changedNumber;
+                                                              });
+                                                              Navigator.pop(
+                                                                  context);
+                                                            },
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    );
+                                                  });
+                                            },
+                                          ),
+                                        ]),
+                                  ),
+                                  const SizedBox(
+                                    height: 20,
+                                  ),
+                                ],
+                              ),
+                              //////////////
+                              ///
+                              ///
+                              ///
+                              ///
+                              Hero(
+                                tag: "btn",
+                                child: Center(
+                                  child: Container(
+                                    height: 50,
+                                    width: 400,
+                                    child: DecoratedBox(
+                                      decoration: BoxDecoration(
+                                          gradient: LinearGradient(colors: [
+                                            const Color(0xff42c98d),
+                                            const Color(0xff42c98d),
+                                            const Color(0xff0da6c2),
+
+                                            //add more colors
+                                          ]),
+                                          borderRadius:
+                                              BorderRadius.circular(22),
+                                          boxShadow: <BoxShadow>[
+                                            BoxShadow(
+                                                color: Color.fromRGBO(0, 0, 0,
+                                                    0.57), //shadow for button
+                                                blurRadius:
+                                                    5) //blur radius of shadow
+                                          ]),
+                                      child: ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                          primary:
+                                              Color.fromARGB(0, 255, 255, 255),
+                                          onSurface: Colors.transparent,
+                                          shadowColor: Colors.transparent,
+                                          //make color or elevated button transparent
+                                        ),
+                                        onPressed: () async {
+                                          if (formKey.currentState!
+                                              .validate()) {
+                                            await Studentx.addStudent(
+                                                widget.documentId,
+                                                studentName.text,
+                                                Studentusername.text,
+                                                StudentNationalID.text,
+                                                StudentNationality.text,
+                                                Numvalue,
+                                                blood,
+                                                "gqvxZab1CsHCgT9kZgel");
+
+                                            showCupertinoDialog(
+                                                context: context,
+                                                builder: CreateDialog);
+                                          }
+                                        }
+                                        //  if (formKey.currentState!.validate()) {}
+                                        ,
+                                        child: Padding(
+                                          padding: EdgeInsets.only(
+                                            left: 18,
+                                            right: 18,
+                                          ),
+                                          child: Text(
+                                            "أضافة",
+                                            style: TextStyle(
+                                                color: Color.fromARGB(
+                                                    255, 255, 255, 255)),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                height: 20,
+                              )
+                            ],
+                          )),
                     ),
                   ],
                 ),
-              ),
-              const SizedBox(
-                height: 50,
               ),
               Container(
                 height: 55,
@@ -540,8 +1309,6 @@ class _CreateStudentState extends State<CreateStudent>
             const SizedBox(
               height: 20,
             ),
-
-           
             const SizedBox(
               height: 50,
             ),
@@ -565,7 +1332,6 @@ class _CreateStudentState extends State<CreateStudent>
                             header: true,
                           ),
                         ));
-                    
                       }
                     },
                     elevation: 0,
@@ -837,7 +1603,6 @@ class _CreateStudentState extends State<CreateStudent>
                       child: Expanded(
                         child: Container(
                           width: 307,
-                      
                           decoration: BoxDecoration(
                             border: Border(
                               bottom: BorderSide(
@@ -964,7 +1729,6 @@ class _CreateStudentState extends State<CreateStudent>
                                           _selectedNumber = _changedNumber;
                                         });
                                         Navigator.pop(context);
-                                      
                                       },
                                     ),
                                   ],
@@ -978,8 +1742,6 @@ class _CreateStudentState extends State<CreateStudent>
             const SizedBox(
               height: 20,
             ),
-         
-
             Row(
               children: [
                 Text("            "),
@@ -1090,5 +1852,3 @@ class _CreateStudentState extends State<CreateStudent>
     );
   }
 }
-
-
