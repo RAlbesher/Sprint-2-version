@@ -1,5 +1,9 @@
 # Circlight 
-#### Circlight is a mobile application designed to facilitate communication with the school and management of student pick-up using a smart bracelet connected to the application ,it is also aims to bridge the gap between the staff of the school administration, the principal and the parents of the students.
+<p align="center">
+   <img src="https://user-images.githubusercontent.com/98522894/205947758-d07d4e8b-690e-4740-aeb9-786dffa732c5.png" alt="Circlight logo" height="200" width="200">
+</p>
+<h2> About Circlight </h2>
+ Circlight is a mobile application designed to facilitate communication with the school and management of student pick-up using a smart bracelet connected to the application ,it is also aims to bridge the gap between the staff of the school administration, the principal and the parents of the students.
 
 
 # Technology 
