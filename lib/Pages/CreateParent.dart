@@ -1115,12 +1115,6 @@ class _CreateState extends State<Createparent5> with TickerProviderStateMixin {
                                   await showCupertinoDialog(
                                       context: context, builder: CreateDialog);
                                 }
-                                Navigator.push(
-                                    context,
-                                    CupertinoPageRoute(
-                                        builder: (context) => Nav(
-                                              TabValue: 10,
-                                            )));
                               },
                               child: Padding(
                                 padding: EdgeInsets.only(
