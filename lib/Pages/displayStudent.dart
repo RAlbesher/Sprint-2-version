@@ -78,7 +78,7 @@ class _Studentdispaly extends State<Studentdispaly>
   Widget build(BuildContext context) {
     double _headerHeight = 150;
     return Scaffold(
-      backgroundColor: Color(0xFFEEEEEE),
+      backgroundColor: Colors.white,
       body: NotificationListener<ScrollNotification>(
         onNotification: _scrollListener,
         child: Container(
@@ -105,26 +105,29 @@ class _Studentdispaly extends State<Studentdispaly>
                         ],
                       ),
                     ),
-                    Container(
-                      padding: EdgeInsets.only(right: 20, top: 20, left: 20),
-                      child: Directionality(
-                        textDirection: TextDirection.rtl,
-                        child: TextFormField(
-                          decoration: InputDecoration(
-                              focusedBorder: OutlineInputBorder(
-                                borderSide: const BorderSide(
-                                    color: Color(0xff57d77a), width: 2),
-                                borderRadius: BorderRadius.circular(22.0),
-                              ),
-                              labelText: "بحث",
-                              hintText: "بحث",
-                              prefixIcon: Icon(Icons.search),
-                              border: OutlineInputBorder(
-                                  borderSide: const BorderSide(
-                                      color: Color(0xff57d77a), width: 2),
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(22.0)))),
-                        ),
+                    Padding(
+                      padding: EdgeInsets.only(top: 16, left: 20, right: 20),
+                      child: TextField(
+                        textAlign: TextAlign.right,
+                        decoration: InputDecoration(
+                            hintText: "..بحث",
+                            hintStyle: TextStyle(color: Colors.grey.shade600),
+                            prefixIcon: Icon(
+                              Icons.search,
+                              color: Colors.grey.shade600,
+                              size: 20,
+                            ),
+                            filled: true,
+                            fillColor: Colors.grey.shade100,
+                            contentPadding: EdgeInsets.all(8),
+                            enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20),
+                                borderSide:
+                                    BorderSide(color: Colors.grey.shade100)),
+                            focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20),
+                                borderSide:
+                                    BorderSide(color: Colors.grey.shade100))),
                       ),
                     ),
                     const SizedBox(

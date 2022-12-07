@@ -76,10 +76,10 @@ class _Paretdisplay extends State<Paretdisplay> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    double _headerHeight = 150;
+    double _headerHeight = 140;
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Color(0xFFEEEEEE),
+        backgroundColor: Colors.white,
         body: NotificationListener<ScrollNotification>(
           onNotification: _scrollListener,
           child: Container(
@@ -92,13 +92,16 @@ class _Paretdisplay extends State<Paretdisplay> with TickerProviderStateMixin {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Container(
-                        height: 230,
+                        height: 210,
                         child: Stack(
                           children: [
                             Container(
                               height: _headerHeight,
                               child: HeaderWidget(
                                   _headerHeight, false, Icons.login_rounded),
+                            ),
+                            SizedBox(
+                              height: 5,
                             ),
                             Container(
                               padding: EdgeInsets.only(left: 20, top: 145),
@@ -117,7 +120,7 @@ class _Paretdisplay extends State<Paretdisplay> with TickerProviderStateMixin {
                                         BoxShadow(
                                           color:
                                               Color.fromARGB(255, 198, 210, 201)
-                                                  .withOpacity(0.4),
+                                                  .withOpacity(0.5),
                                           spreadRadius: 5,
                                           blurRadius: 7,
                                           offset: Offset(0,
@@ -155,28 +158,36 @@ class _Paretdisplay extends State<Paretdisplay> with TickerProviderStateMixin {
                               ),
                             ),
                             Container(
-                              height: 200,
+                              height: 230,
                               padding: EdgeInsets.only(
-                                  right: 20, top: 153, left: 100),
-                              child: Directionality(
-                                textDirection: TextDirection.rtl,
-                                child: TextFormField(
+                                  right: 2, top: 135, left: 80, bottom: 14),
+                              child: Padding(
+                                padding: EdgeInsets.only(
+                                    top: 16, left: 20, right: 20),
+                                child: TextField(
+                                  textAlign: TextAlign.right,
                                   decoration: InputDecoration(
-                                      focusedBorder: OutlineInputBorder(
-                                        borderSide: const BorderSide(
-                                            color: Color(0xff57d77a), width: 2),
-                                        borderRadius:
-                                            BorderRadius.circular(22.0),
+                                      hintText: "..بحث",
+                                      hintStyle: TextStyle(
+                                          color: Colors.grey.shade600),
+                                      prefixIcon: Icon(
+                                        Icons.search,
+                                        color: Colors.grey.shade600,
+                                        size: 20,
                                       ),
-                                      labelText: "بحث",
-                                      hintText: "بحث",
-                                      prefixIcon: Icon(Icons.search),
-                                      border: OutlineInputBorder(
-                                          borderSide: const BorderSide(
-                                              color: Color(0xff57d77a),
-                                              width: 2),
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(22.0)))),
+                                      filled: true,
+                                      fillColor: Colors.grey.shade100,
+                                      contentPadding: EdgeInsets.all(8),
+                                      enabledBorder: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(20),
+                                          borderSide: BorderSide(
+                                              color: Colors.grey.shade100)),
+                                      focusedBorder: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(20),
+                                          borderSide: BorderSide(
+                                              color: Colors.grey.shade100))),
                                 ),
                               ),
                             ),
